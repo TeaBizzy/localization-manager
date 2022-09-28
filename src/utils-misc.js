@@ -1,9 +1,21 @@
 const {testStr, testIdx } = require('../test/test-misc')
 
 module.exports= {
-  lineFeedChange: function lineFeedChange(value, mark) {
-    testStr(value)	  
-    return value.replace(mark, '\n');
+  lineFeedChange: function lineFeedChange(value, mark, to) {
+    if (value.includes(mark)) {
+      testStr(value)	  
+      return value.replace(mark, '\n');
+    } else if(to) {
+      testStr(to)	    
+      return to	
+    } else {
+      testStr(value)
+      return value
+    }
+  },
+  addStrToSrc: function (nextLine, src, newStr) {
+  testStr(newStr)	  
+  return nextLine ? src + newStr + '\n' : src + newStr
   },
   removeTagsInStr: function removeTagsInStr(value) {
     testStr(value)	  
@@ -24,5 +36,10 @@ module.exports= {
   lineFeedToMark: function(value, mark) {
     testStr(value)	  
     return value.trim().replace('\n', mark);
-  } 
+  },
+  makeStringPath: function(tagName, tagIndex) {
+    testStr(tagIndex)	  
+    const strPath = tagName ? tagName + '/' + tagIndex : tagIndex
+    return strPath	  
+  }
 }
